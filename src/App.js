@@ -1,4 +1,4 @@
-import { Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/shared/Navbar";
 import SidebarLeft from "./components/shared/SidebarLeft";
 import MainContent from "./components/content/MainContent";
@@ -7,23 +7,34 @@ import LastElement from "./components/content/LastElement";
 import StoryContent from "./components/content/StoryContent";
 import CreatePost from "./components/content/CreatePost";
 import PostContent from "./components/content/PostContent";
-import ConfirmFriend from "./components/content/ConfirmFriend";
-
+import Inscription from "./components/authentication/Inscription";
+import Login from "./components/authentication/Login";
 
 function App() {
   return (
-    <div>
-      <StoryContent />
-      {/* <ConfirmFriend /> */}
-      <CreatePost />
-      <PostContent />
-      <Navbar />
-      <SidebarLeft />
-      <MainContent />
-      <RightChat />
-      <LastElement />
-    </div>
-  
+    
+      <Routes>
+
+        <Route path="/sign" element={<Inscription />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="*"
+          element={
+            <>
+              <Navbar />
+              <SidebarLeft />
+              <StoryContent />
+              <CreatePost />
+              <PostContent />
+              <MainContent />
+              <RightChat />
+              <LastElement />
+            </>
+          }
+        />
+
+      </Routes>
+   
   );
 }
 
