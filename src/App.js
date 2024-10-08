@@ -15,7 +15,7 @@ function App() {
     
       <Routes>
 
-        <Route path="/sign" element={<Inscription />} />
+        <Route path="/register" element={<Inscription />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="*"
