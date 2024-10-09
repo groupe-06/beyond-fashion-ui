@@ -64,7 +64,7 @@ const CreatePost = () => {
                     class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"
                   >
                     <i class="font-md text-danger feather-video me-2"></i>
-                    <span class="d-none-xs">Live Video</span>
+                    <span class="d-none-xs">Tags</span>
                   </a>
                   <a
                     href="#"
@@ -72,13 +72,6 @@ const CreatePost = () => {
                   >
                     <i class="font-md text-success feather-image me-2"></i>
                     <span class="d-none-xs">Photo/Video</span>
-                  </a>
-                  <a
-                    href="#"
-                    class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"
-                  >
-                    <i class="font-md text-warning feather-camera me-2"></i>
-                    <span class="d-none-xs">Feeling/Activity</span>
                   </a>
                   <a
                     href="#"
