@@ -63,7 +63,7 @@ const CreatePost = () => {
                     href="#"
                     class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"
                   >
-                    <i class="font-md text-danger feather-video me-2"></i>
+                    <i class="fa-solid fa-file-import"></i>
                     <span class="d-none-xs">Tags</span>
                   </a>
                   <a
@@ -80,7 +80,7 @@ const CreatePost = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
                   </a>
                   <div
                     class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg"
