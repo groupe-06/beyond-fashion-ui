@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/shared/Navbar";
+import './index.css';
+import Header from "./components/shared/Navbar";
 import SidebarLeft from "./components/shared/SidebarLeft";
 import MainContent from "./components/content/MainContent";
 import RightChat from "./components/content/RightChat";
@@ -21,7 +22,7 @@ function App() {
           path="*"
           element={
             <>
-              <Navbar />
+              <Header />
               <SidebarLeft />
               <StoryContent />
               <CreatePost />
