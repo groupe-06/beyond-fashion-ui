@@ -20,74 +20,44 @@ const Login = () => {
   };
 
   return (
-    <div className="main-wrap">
-      <div className="nav-header bg-transparent shadow-none border-0">
-        <div className="nav-top w-100">
-          <a href="index.html">
-            <i className="feather-zap text-success display1-size me-2 ms-0"></i>
-            <span className="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala</span>
-          </a>
-          <div className="ms-auto">
-            <a href="/register" className="header-btn bg-dark text-white font-xsss p-3 rounded-xl">Register</a>
+    <div className="background">
+      <div className="thread">Thread</div>
+      <div className="line">line</div>
+      
+      <div className="login-container">
+        <h1>Threadline</h1>
+        <h2>Login</h2>
+        <form>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="username@gmail.com" required />
           </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required />
+          </div>
+          <a href="#" className="forgot-password">Forgot Password?</a>
+          <button type="submit" className="sign-in">Sign in</button>
+        </form>
+        <div className="or-continue">or continue with</div>
+        <div className="social-login">
+          <button className="google">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" />
+          </button>
+          <button className="github">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" />
+          </button>
+          <button className="facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" />
+          </button>
         </div>
-      </div>
-
-      <div style={styles.container}>
-        <div style={styles.card}>
-          <h2 className="fw-700 display1-size display2-md-size mb-4">Connexion</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group icon-input mb-3">
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
-                placeholder="Email"
-                required
-              />
-            </div>
-
-            <div className="form-group icon-input mb-3">
-              <label>Mot de passe</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
-                placeholder="Mot de passe"
-                required
-              />
-            </div>
-
-            <button type="submit" className="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0">
-              Se connecter
-            </button>
-          </form>
+        <div className="register">
+          Don't have an account yet? <a href="#">Register for free</a>
         </div>
       </div>
     </div>
   );
 };
 
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f0f2f5',
-  },
-  card: {
-    backgroundColor: 'white',
-    padding: '2rem',
-    borderRadius: '8px',
-    boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)',
-    width: '400px',
-  },
-};
 
 export default Login;
