@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LoginModal from '../../modal/LoginModal'; 
-
+import LoginModal from '../../modal/LoginModal';
+import axios from 'axios';
 const Inscription = () => {
     const [formData, setFormData] = useState({
         firstname: '',
@@ -14,7 +14,8 @@ const Inscription = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const [modalOpen, setModalOpen] = useState(false); // État pour contrôler l'ouverture du modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const [serverError, setServerError] = useState(''); // État pour contrôler l'ouverture du modal
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,10 +34,20 @@ const Inscription = () => {
         return Object.keys(formErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log(formData);
+            try {
+                const response = await axios.post('https://beyond-fashion-api-ts.onrender.com/api/v1/users/create', formData);
+                console.log('User registered successfully:', response.data);
+            } catch (error) {
+                // Handle server-side errors (e.g., validation errors or other issues)
+                if (error.response) {
+                    setServerError(error.response.data.message);
+                } else {
+                    setServerError('An error occurred while registering. Please try again.');
+                }
+            }
         } else {
             console.log("Form validation failed");
         }
@@ -52,7 +63,7 @@ const Inscription = () => {
                     </a>
                     <div className="ms-auto">
                         {/* Modifier le bouton Login pour ouvrir le modal */}
-                        <button 
+                        <button
                             className="header-btn d-none d-lg-block bg-dark fw-500 text-white font-xsss p-3 ms-auto w100 text-center lh-20 rounded-xl"
                             onClick={() => setModalOpen(true)} // Ouvrir le modal
                         >
@@ -187,9 +198,9 @@ const Inscription = () => {
             </div>
 
             {/* Intégrer le modal ici */}
-            <LoginModal 
-                isOpen={modalOpen} 
-                onClose={() => setModalOpen(false)} 
+            <LoginModal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
                 formData={{ email: formData.email, password: formData.password }} // Vous pouvez passer des données si nécessaire
                 handleChange={handleChange} // Si vous souhaitez gérer les changements d'input dans le modal
                 handleSubmit={handleSubmit} // Si vous souhaitez gérer la soumission du formulaire dans le modal

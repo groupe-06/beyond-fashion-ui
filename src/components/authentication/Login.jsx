@@ -5,6 +5,7 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -13,33 +14,38 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logique de soumission ici
-    console.log(formData);
+    try {
+      const response = await fetch('http://localhost:5000/api/login', { // Use your backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log('Login successful:', data);
+        // Handle successful login, store token in local storage or state
+      } else {
+        setErrorMessage(data.message || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setErrorMessage('An error occurred while trying to log in. Please try again later.');
+    }
   };
 
   return (
-    <div className="main-wrap">
-      <div className="nav-header bg-transparent shadow-none border-0">
-        <div className="nav-top w-100">
-          <a href="index.html">
-            <i className="feather-zap text-success display1-size me-2 ms-0"></i>
-            <span className="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">Sociala</span>
-          </a>
-          <div className="ms-auto">
-            <a href="/register" className="header-btn bg-dark text-white font-xsss p-3 rounded-xl">Register</a>
-          </div>
-        </div>
-      </div>
-
-      <div style={styles.container}>
-        <div style={styles.card}>
-          <h2 className="fw-700 display1-size display2-md-size mb-4">Connexion</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group icon-input mb-3">
-              <label>Email</label>
-              <input
+      <div className="main-wrap">
+        {/* The rest of your component remains the same */}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group icon-input mb-3">
+            <label>Email</label>
+            <input
                 type="email"
                 name="email"
                 value={formData.email}
@@ -47,12 +53,12 @@ const Login = () => {
                 className="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
                 placeholder="Email"
                 required
-              />
-            </div>
+            />
+          </div>
 
-            <div className="form-group icon-input mb-3">
-              <label>Mot de passe</label>
-              <input
+          <div className="form-group icon-input mb-3">
+            <label>Mot de passe</label>
+            <input
                 type="password"
                 name="password"
                 value={formData.password}
@@ -60,16 +66,16 @@ const Login = () => {
                 className="style2-input ps-5 form-control text-grey-900 font-xsss fw-600"
                 placeholder="Mot de passe"
                 required
-              />
-            </div>
+            />
+          </div>
 
-            <button type="submit" className="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0">
-              Se connecter
-            </button>
-          </form>
-        </div>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+          <button type="submit" className="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0">
+            Se connecter
+          </button>
+        </form>
       </div>
-    </div>
   );
 };
 
